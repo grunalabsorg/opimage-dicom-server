@@ -73,7 +73,7 @@
   
     "PostgreSQL": {
       "EnableIndex": true,
-      "EnableStorage": false,
+      "EnableStorage": true,
       "Port": 5432,
       "Host": "postgres-orthanc",
       "Database": "orthanc",
