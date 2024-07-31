@@ -1,7 +1,6 @@
-version: '3.8'
+version: "3.8"
 
 services:
-
   nginx:
     image: nginx:latest
     container_name: orthanc-proxy
@@ -13,40 +12,23 @@ services:
       - "8000:8000"
     networks:
       - opimage-network
-    restart: unless-stopped    
+    restart: unless-stopped
 
   orthanc:
     image: orthancteam/orthanc
     container_name: orthanc-server
-    depends_on:
-      - postgres
-    volumes:  
-      - ./config/orthanc.json:/etc/orthanc/orthanc.json        
+
+    volumes:
+      - ./db/:/var/lib/orthanc/db/
+      - ./config/orthanc.json:/etc/orthanc/orthanc.json
     ports:
       - "8042:8042"
       - "4242:4242"
     networks:
-      - opimage-network      
-    restart: unless-stopped
-
-  postgres:
-    # docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' postgres # to get the IP address of the containeR
-    image: postgres:12
-    container_name: orthanc-db
-    environment:
-      POSTGRES_DB: orthanc
-      POSTGRES_USER: orthanc
-      POSTGRES_PASSWORD: orthanc
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./persistence/pg_db:/var/lib/postgresql/data
-    networks:
-      - opimage-network      
+      - opimage-network
     restart: unless-stopped
 
 networks:
   opimage-network:
     external: true
-
-# docker-compose -f docker-compose-dev.yml up --build -d    
+# docker-compose -f docker-compose-dev.yml up --build -d

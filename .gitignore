@@ -1,2 +1,3 @@
 persistence/pg_db/*
 !persistence/pg_db/.gitkeep
+db/*

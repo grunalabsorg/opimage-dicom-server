@@ -1,7 +1,7 @@
 {
   "Name": "Orthanc",
-  "StorageDirectory": "/var/lib/postgresql/data",
-  "IndexDirectory": "/var/lib/postgresql/data",
+  "StorageDirectory": "/var/lib/orthanc/db",
+  "IndexDirectory": "/var/lib/orthanc/db",
   "StorageCompression": false,
   "MaximumStorageSize": 0,
   "MaximumPatientCount": 0,
@@ -70,19 +70,7 @@
   "MediaArchiveSize": 1,
   "StorageAccessOnFind": "Always",
   "MetricsEnabled": true,
-  
-    "PostgreSQL": {
-      "EnableIndex": true,
-      "EnableStorage": true,
-      "Port": 5432,
-      "Host": "postgres-orthanc",
-      "Database": "orthanc",
-      "Username": "orthanc",
-      "Password": "orthanc",
-      "EnableSsl": false,
-      "Lock": false
-    },
-  
+
   "DicomWeb": {
     "Enable": true,
     "Root": "/dicom-web/",
